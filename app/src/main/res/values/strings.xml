@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SendGeoInfo</string>
+    <string name="error_message">There was an error!</string>
+    <string name="getting_data">Getting data...</string>
 </resources>
