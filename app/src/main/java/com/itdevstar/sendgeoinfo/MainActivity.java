@@ -15,14 +15,29 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.itdevstar.sendgeoinfo.asynctask.HttpAsyncTask;
+import com.itdevstar.sendgeoinfo.utils.HttpUtils;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
+
+    public static final String TAG = "SendGeoInfo";
 
     String[] appPermissions = {
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -78,6 +93,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @SuppressLint("MissingPermission")
     private void initApp() {
+        Button send_button = (Button)findViewById(R.id.send_button);
+        send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData();
+            }
+        });
+
         android_id = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
@@ -86,15 +109,34 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void sendData() {
+        Log.e("send data", "------start test click----------------------");
+        Log.e("send data id", android_id);
+        Log.e("send data latitude", latitude);
+        Log.e("send data longitude", longitude);
+        Log.e("send data", "------end test click----------------------");
 
-    }
+        RequestParams rp = new RequestParams();
+        rp.add("uuid", android_id);
+        rp.add("lat", latitude);
+        rp.add("lng", longitude);
 
-    public void showResponseMessage(String response) {
-        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-    }
+        HttpUtils.post("mobile/api/", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
 
-    public void showErrorMessage() {
-        Toast.makeText(this, R.string.error_message, Toast.LENGTH_SHORT).show();
+                if (statusCode == 200) {
+                    Log.e(TAG, response.toString());
+                } else {
+                    Log.e(TAG, "---- this is response error: " + response.toString());
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+        });
     }
 
     public boolean checkAndRequestPermissions() {

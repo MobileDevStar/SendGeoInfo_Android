@@ -7,7 +7,7 @@ import com.itdevstar.sendgeoinfo.endpoint.EndPointUrl;
  */
 public class EndpointUrlProvider {
 
-    private static final String REQUEST_URL = "http://jsonplaceholder.typicode.com/posts/1";
+    private static final String REQUEST_URL = "https://digifli.com/mobile/api/ ";
 
     public static EndPointUrl getDefaultEndPointUrl() {
         return new EndPointUrl(REQUEST_URL);
