@@ -26,6 +26,9 @@ coordinates. It should resend this information every 20 minutes*.
 
 ## ScreenShots
 
-![](screenshots/screenshot_1.png)
-![](screenshots/screenshot_2.png)
+<div align="center" style="float: left">
+    <img src="screenshots/screenshot_1.png" alt="Screenshot1" />
+    <img src="screenshots/screenshot_2.png" alt="Screenshot2" />
+</div>
+
 
