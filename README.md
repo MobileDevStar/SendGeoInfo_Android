@@ -1,5 +1,5 @@
 ## SendGeoInfo_Android
-This is a sample to send device id and geo info to backend.
+This is an app MVP to send device id and geo info to backend.
 
 ---
 
