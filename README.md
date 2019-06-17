@@ -27,8 +27,8 @@ coordinates. It should resend this information every 20 minutes*.
 ## ScreenShots
 
 <div align="center" style="float: left">
-    <img src="./screenshots/Screenshot_1.png" alt="Screenshot1" />
-    <img src="./screenshots/Screenshot_2.png" alt="Screenshot2" />
+    <img src="./screenshots/Screenshot_1.png" alt="Screenshot1" width="40%"/>
+    <img src="./screenshots/Screenshot_2.png" alt="Screenshot2" width="40%"/>
 </div>
 
 
